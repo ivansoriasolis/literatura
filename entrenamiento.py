@@ -89,7 +89,7 @@ def print_results(model, input_path, k=1):
 #####  Cargar el dataset
 df = pd.read_json("textos.json")
 
-model_id = 'quechua_pre'
+model_id = 'quechua'
 language = 'qu'
 texto = {'qu': 'texto',
          'es': 'textoespanol'}
@@ -116,16 +116,16 @@ fasttext_params = {
     'wordNgrams': 1,
     'dim': 300,
     'loss': 'softmax',
-    'pretrainedVectors': pretrained_path
+    #'pretrainedVectors': ''
     }
 
 #Hiperparámetros para hacer validación cruzada
 fasttext_hyper_params = {
     'dim': [300],
-    'epoch': [10,50,100, 150, 200],
-    'wordNgrams': [1, 2, 3, 4, 5],
+    'epoch': [150, 200],
+    'wordNgrams': [2, 3, ],
     'lrUpdateRate': [100, 200],
-    'loss': ['softmax', 'hs', 'ns']
+    'loss': ['softmax', 'ns']
 }
 
 fasttext_search_parameters =  {
@@ -136,7 +136,7 @@ fasttext_search_parameters =  {
     "random_state": 1234
 }
 val_size = 0.2
-split_random_state = 2023
+split_random_state = 1234
 
 
 from fasttext_module.model import FasttextPipeline
